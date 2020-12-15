@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 const cilent = new Discord.Client();
 
 
+//https://discord.com/api/oauth2/authorize?client_id=788083425135296512&permissions=3669568&scope=bot
 
 //メインコード↓
 cilent.once('ready', () => {
@@ -144,5 +145,63 @@ cilent.on('message', async msg => {
                 }
             });
         }
+    }
+})
+
+cilent.on('message', message => {
+    if(message.content === 'rd/help'){
+        message.channel.send({
+            embed: {
+                title: "SpaceRadio：ModHelp",
+                description: "ラジオパーソナリティ専用コマンド",
+                color: 0x4f36d9,
+                timestamp: new Date(),
+                footer: {
+                    text: "このコマンドは悪用される可能性があるので漏洩させないように。",
+                },
+                fields: [
+                    {
+                        name: "**rd/start30**",
+                        value: "30分後の通知を #お知らせ に流します。"
+                    },
+                    {
+                        name: "**rd/start0**",
+                        value: "開始のお知らせを出します。"
+                    },
+                    {
+                        name: "**rd/onair30**",
+                        value: "ラジオをスタートさせます。"
+                    },
+                    {
+                        name: "**rd/end**",
+                        value: "ラジオを終了させます。\n__一度Botの電源を落としますので注意__"
+                    }
+                ]
+            }
+        })
+    }
+    if(message.content === 'rd/start30') {
+        message.channel.send('@here')
+
+        message.channel.send({
+            embed: {
+                title: "ラジオ開始通知：残り30分",
+                description: "30分でラジオがスタートします！",
+                color: 0x4f36d9,
+                timestamp: new Date()
+            }
+        })
+    }
+    if(message.content === 'rd/start30') {
+        message.channel.send('@everyone')
+
+        message.channel.send({
+            embed: {
+                title: "ラジオ開始通知：開始",
+                description: "ラジオがスタートしました！",
+                color: 0x4f36d9,
+                timestamp: new Date()
+            }
+        })
     }
 })
